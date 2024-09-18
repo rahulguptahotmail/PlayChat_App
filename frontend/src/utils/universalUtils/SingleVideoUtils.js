@@ -14,6 +14,17 @@ const SingleVideoUtils = () => {
     else setRefresh(1);
   };
 
+  // special
+  if (window.document.getElementById("singleVideo")) {
+    window.document.addEventListener("scroll", (e) => {
+      if (
+        window.document.getElementById("singleVideo").clientHeight <
+        window.scrollY + window.innerHeight
+      )
+        stateHandler();
+    });
+  }
+
   const token = localStorage.getItem("token");
 
   const videoLike = async (videoId) => {
@@ -36,14 +47,16 @@ const SingleVideoUtils = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/v1/video/videos`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/v1/video/videos`,
+        { params: { length: items.length } });
       setItems(res.data.videos);
     };
 
+    if (items.length % 10 === 0)
     fetchVideos();
   }, [refresh]);
   return (
-    <div>
+    <div id="singleVideo">
       {items.map((item, index) => (
         <div key={index} className=" mb-2 ">
           <Link to={`/video/${item._id}`} style={{ textDecoration: "none" }}>
