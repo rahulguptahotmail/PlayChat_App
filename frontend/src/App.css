@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.b {
+  border: 2px solid rgba(66, 59, 59, 0.655);
+}
+
+/* ::-webkit-file-upload-button {
+  display: none;
+} */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* animations */
+
+@keyframes image-healing {
+  from {
+    transform: rotate(-1deg);
+    transform: scale3d(1);
+  }
+  to {
+    transform: rotate(1deg);
+    transform: scale(0.98);
+  }
+}
+
+.image-healing-animation{
+    animation: image-healing 3s infinite alternate linear;
+}
+
+
+/* Loader */
+
+/* Basic reset for body and html */
+
+
+/* Loader styling */
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 1.5s linear infinite;
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* searched element hover effect */
+
+.searched-element :hover{
+  transform: scale(1.0099);
+  transition: all 0.5s linear infinite;
+}
