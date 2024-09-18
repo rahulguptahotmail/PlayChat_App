@@ -77,6 +77,7 @@ const userRegister = async (req, res) => {
     }
 
     const otp = otpGenerate();
+    sendingMail(email, otp);
     const userName = "@" + email.split("@")[0];
 
     const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
@@ -103,8 +104,7 @@ const userRegister = async (req, res) => {
     });
     await user.save();
 
-    // user otp request
-    sendingMail(email, otp);
+    
 
     // check user true of false in 60 sec
     setTimeout(async () => {
