@@ -9,7 +9,7 @@ const supportHandler = async (req, res) => {
   // veryfying token
   const id = jwt.verify(token, process.env.JWT_SECRET).id;
   if (!token || !id)
-    return res.status(400).json({ message: "Invalid token!", success: false });
+    return res.status(400).json({ message: "Invalid token!", success: false })
 
   const user = await userModel.findById(id);
 
