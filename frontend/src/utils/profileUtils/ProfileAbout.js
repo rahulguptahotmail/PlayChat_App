@@ -9,11 +9,10 @@ const ProfileAbout = () => {
     <div className=" ps-md-4 ms-md-5">
       <div className=" d-flex justify-content-center align-items-center">
         <div className=" bg-body-tertiary p-4 rounded shadow">
-          <h3>
-            {" "}
-            Hello Mr.{" "}
-            <span className=" text-warning fst-italic">{JSON.parse(localStorage.getItem("userDetails")).fullName}</span>
-           </h3>
+          <h4>
+            Hello Mr.
+            <span className=" text-warning fst-italic">{JSON.parse(localStorage.getItem("userDetails")).fullName} </span> 
+           </h4>
        
           <h4>
             Your Account CreatedAt :{" "}
