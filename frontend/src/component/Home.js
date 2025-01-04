@@ -5,35 +5,16 @@ import HomeVideo from "../utils/homeUtils/HomeVideo";
 const Home = () => {
   const [items, setItems] = useState([]);
 
-  const [refresh, setRefresh] = useState();
-
-  // special
-  if (window.document.getElementById("homeVideos")) {
-    window.document.addEventListener("scroll", (e) => {
-      if (
-        window.document.getElementById("homeVideos").clientHeight <
-        window.scrollY + window.innerHeight
-      )
-        stateHandler();
-    });
-  }
-
-  const stateHandler = () => {
-    if (refresh === 1) setRefresh(0);
-    else setRefresh(1);
-  };
-
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/video/videos`,
-        { params: { length: items.length } }
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/video/videos`
       );
       setItems(res.data.videos);
     };
 
-    if (items.length % 10 === 0) fetchVideos();
-  }, [refresh]);
+    fetchVideos();
+  }, []);
 
   return (
     <div
