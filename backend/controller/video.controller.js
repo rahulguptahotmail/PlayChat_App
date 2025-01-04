@@ -204,12 +204,8 @@ const searchQuery = async (req, res) => {
 // Home Videos with Algorithms
 
 const homeVideos = async (req, res) => {
-  const length = req.query.length;
-  const video = await videoModel.find();
-
-  video.reverse();
-  const videos = video.splice(0, length + 10);
-
+  const videos = await videoModel.find();
+  videos.reverse();
   return res.status(200).json({ message: "Videos", videos, success: true });
 };
 
