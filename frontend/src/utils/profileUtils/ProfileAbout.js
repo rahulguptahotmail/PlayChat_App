@@ -12,7 +12,8 @@ const ProfileAbout = () => {
           <h3>
             {" "}
             Hello Mr.{" "}
-            <span className=" text-warning fst-italic">{JSON.parse(localStorage.getItem("userDetails")).fullName}</span></h3>
+            <span className=" text-warning fst-italic">{JSON.parse(localStorage.getItem("userDetails")).fullName}</span>
+           </h3>
        
           <h4>
             Your Account CreatedAt :{" "}
