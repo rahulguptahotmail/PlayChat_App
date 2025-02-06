@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const authentication = async () => {
       const token = localStorage.getItem("token");
-      if (!token) return setAuth(false);
+      if (!token) return navigate("/login");
 
       await axios
         .get(`${process.env.REACT_APP_BACKEND_URL}api/v1/user/authentication`, {
