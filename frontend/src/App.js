@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./component/Home";
 import Header from "./component/Header";
@@ -12,7 +12,7 @@ import Images from "./component/Images";
 import Setting from "./component/Setting";
 import Support from "./component/Support";
 import About from "./component/About";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PageNotFound from "./component/PageNotFound";
 import axios from "axios";
 import ForgotPassword from "./component/ForgotPassword";
@@ -22,7 +22,7 @@ import SingleImage from "./component/SingleImage";
 import Followers from "./component/Followers";
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const authentication = async () => {
       const token = localStorage.getItem("token");
@@ -43,10 +43,9 @@ function App() {
             localStorage.removeItem("userDetails");
             localStorage.setItem("userDetails", JSON.stringify(userDetails));
           }
-          setAuth(true);
         })
         .catch((err) => {
-          setAuth(false);
+          navigate("/login");
         });
     };
 
@@ -56,32 +55,22 @@ function App() {
     <>
       <Header />
       <Routes>
-        {auth ? (
-          <>
-            {" "}
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} /> */}
-            <Route path="/image" element={<Images />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/setting" element={<Setting />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/imageupload" element={<ImageUpload />} />
-            <Route path="/videoupload" element={<VideoUpload />} />
-            <Route path="/followers" element={<Followers />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/video/:videoid" element={<SingleVideo />} />
-            <Route path="/image/:imageid" element={<SingleImage />} />
-            <Route path="/user/:userid" element={<SingleUserProfile />} />
-            <Route path="/*" element={<PageNotFound />} />
-          </>
-        ) : (
-          <>
-            <Route path="/*" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="forgotpassword" element={<ForgotPassword />} />
-          </>
-        )}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/image" element={<Images />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/setting" element={<Setting />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/imageupload" element={<ImageUpload />} />
+        <Route path="/videoupload" element={<VideoUpload />} />
+        <Route path="/followers" element={<Followers />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/video/:videoid" element={<SingleVideo />} />
+        <Route path="/image/:imageid" element={<SingleImage />} />
+        <Route path="/user/:userid" element={<SingleUserProfile />} />
+        <Route path="/*" element={<PageNotFound />} />
+        <Route path="forgotpassword" element={<ForgotPassword />} />
       </Routes>
       <Footer />
     </>
