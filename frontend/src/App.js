@@ -49,6 +49,7 @@ function App() {
         });
     };
 
+    if(!(window.location.pathname=='/register') && !(window.location.pathname =='/forgotpassword'))
     authentication();
   }, [window.location.pathname]);
   return (
