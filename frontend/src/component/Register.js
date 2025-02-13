@@ -70,7 +70,7 @@ const Register = () => {
           if (res.data?.token) {
             localStorage.setItem("token", res.data?.token);
             navigate("/");
-            window.location.reload();
+            // window.location.reload();
             return;
           } else if (res.data.success) setOtpController(true);
           setTimeout(() => {
