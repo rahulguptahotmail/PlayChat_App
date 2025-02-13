@@ -8,6 +8,7 @@ const Images = () => {
   const [option, setOption] = useState(false);
   const [comment, setComment] = useState(false);
   const [refresh, setRefresh] = useState();
+  const loaderRef = useRef(null);
 
   const stateHandler = () => {
     if (refresh === 1) setRefresh(0);
@@ -87,6 +88,7 @@ const Images = () => {
         `${process.env.REACT_APP_BACKEND_URL}api/v1/image/images`,
         { params: { length: items.length } }
       );
+      loaderRef.current.classList.add("d-none");
       setItems(res.data.images);
     };
     // if (items.length % 10 === 0)
@@ -98,8 +100,9 @@ const Images = () => {
       id="homeImages"
       className="d-flex flex-wrap ms-md-4 ps-md-5 pt-2 text-center border"
     >
-      <div id="loader" className=" w-100 d-none">
+     <div id="loader" className=" w-100 fw-bold p-3" ref={loaderRef}>
         <div className="loader m-auto"></div>
+        Loading...
       </div>
       {items.map((item, index) => (
         <div key={index} className=" mb-2 col-12 col-md-6 col-lg-4 col-xl-3">
